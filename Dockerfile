@@ -90,7 +90,13 @@ COPY --from=builder /opt/ComfyUI /opt/ComfyUI
 RUN <<'SH'
     groupadd -o -g 1000 comfy
     useradd -m -o -u 1000 -g 1000 -g comfy -s /bin/bash comfy
-    mkdir -p /data/input /data/output /data/models
+
+    mkdir -p \
+        /data/input \
+        /data/output \
+        /data/models/checkpoints \
+        /data/models/loras \
+        /data/custom_nodes
     chown -R comfy:comfy /data /opt/ComfyUI
 SH
 
@@ -99,6 +105,5 @@ WORKDIR /opt/ComfyUI
 USER comfy
 
 EXPOSE 8188
-VOLUME ["/data"]
 
-ENTRYPOINT ["python", "main.py", "--listen", "0.0.0.0"]
+ENTRYPOINT ["python", "main.py", "--listen", "0.0.0.0", "--base-directory", "/data"]
