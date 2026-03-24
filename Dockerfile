@@ -66,7 +66,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     UV_PYTHON_INSTALL_DIR=/opt/python \
     UV_PROJECT_ENVIRONMENT=/opt/python-venv \
     PATH=/opt/python-venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
-    CLI_ARGS="--listen 0.0.0.0 --port 8188 --disable-auto-launch" \
     COMFYUI_HOME=/opt/ComfyUI
 
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -102,4 +101,4 @@ USER comfy
 EXPOSE 8188
 VOLUME ["/data"]
 
-ENTRYPOINT ["python", "main.py"]
+ENTRYPOINT ["python", "main.py", "--listen", "0.0.0.0"]
