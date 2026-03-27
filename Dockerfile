@@ -95,6 +95,7 @@ RUN <<'SH'
         /data/input \
         /data/output \
         /data/models/checkpoints \
+        /data/models/controlnet \
         /data/models/loras \
         /data/custom_nodes
     chown -R comfy:comfy /data /opt/ComfyUI

@@ -27,6 +27,7 @@ mkdir -p \
   ./data/input \
   ./data/output \
   ./data/models/checkpoints \
+  ./data/models/controlnet \
   ./data/models/loras \
   ./data/custom_nodes
 sudo chown -R 1000:1000 ./data
@@ -37,6 +38,7 @@ sudo docker run --gpus all --rm --init -it -v "./data:/data" -p "127.0.0.1:8188:
 ## Data directories
 
 - Put checkpoint models in `./data/models/checkpoints`
+- Put ControlNet models in `./data/models/controlnet`
 - Put LoRA models in `./data/models/loras`
 - Put custom nodes in `./data/custom_nodes`
 - Generated images are written to `./data/output`
