@@ -13,9 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Configure uv dependency resolution with `exclude-newer`.
-- Update the Docker build to use uv 0.11.13.
+- Update ComfyUI to v0.21.0.
 - Update Python dependencies.
+- Store the ComfyUI database under `/data/user` so it persists with the container data directory.
+- Update uv to 0.11.13.
+- Configure uv dependency resolution with `exclude-newer`.
+- Pin Docker base images by digest.
 - Rework the release pipeline to derive GitHub Releases and Docker image tags from a new `VERSION` file and existing Git tags, with the release procedure documented in the README.
 
 ### Deprecated

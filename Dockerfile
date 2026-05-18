@@ -1,18 +1,17 @@
 # syntax=docker/dockerfile:1
 
-ARG CUDA_RUNTIME_TAG=13.2.0-cudnn-runtime-ubuntu24.04
-ARG UV_VERSION=0.11.13
+ARG CUDA_RUNTIME_IMAGE=nvidia/cuda:13.2.0-cudnn-runtime-ubuntu24.04@sha256:7a31e9bfb2086e4b1ac08aa8e4718d7860730ecc6a9882d2f1e5ed6239f8ef5b
+ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.11.13@sha256:841c8e6fe30a8b07b4478d12d0c608cba6de66102d29d65d1cc423af86051563
 ARG PYTHON_VERSION=3.12.13
 ARG COMFYUI_REPO=https://github.com/Comfy-Org/ComfyUI.git
-ARG COMFYUI_COMMIT=ebf6b52e322664af91fcdc8b8848d31d5fb98f66
+ARG COMFYUI_COMMIT=52976f3ea33cc2312c7b5a32e1c7510b203eefb6
 
-FROM ghcr.io/astral-sh/uv:${UV_VERSION} AS uv
+FROM ${UV_IMAGE} AS uv
 
-FROM nvidia/cuda:${CUDA_RUNTIME_TAG} AS builder
+FROM ${CUDA_RUNTIME_IMAGE} AS builder
 
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
-ARG UV_VERSION
 ARG PYTHON_VERSION
 ARG COMFYUI_REPO
 ARG COMFYUI_COMMIT
@@ -30,14 +29,14 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update
 
     apt-get install -y --no-install-recommends \
-        ca-certificates \
-        ffmpeg \
-        git \
-        libgl1 \
-        libglib2.0-0 \
-        libsm6 \
-        libxext6 \
-        libxrender1
+        ca-certificates=20240203 \
+        ffmpeg=7:6.1.1-3ubuntu5 \
+        git=1:2.43.0-1ubuntu7.3 \
+        libgl1=1.7.0-1build1 \
+        libglib2.0-0t64=2.80.0-6ubuntu3.8 \
+        libsm6=2:1.2.3-1build3 \
+        libxext6=2:1.3.4-1build2 \
+        libxrender1=1:0.9.10-1.1build1
 SH
 
 COPY --from=uv /uv /usr/local/bin/uv
@@ -53,12 +52,11 @@ SH
 
 RUN <<SH
     git clone "${COMFYUI_REPO}" /opt/ComfyUI
-    cd /opt/ComfyUI
-    git checkout --detach "${COMFYUI_COMMIT}"
+    git -C /opt/ComfyUI checkout --detach "${COMFYUI_COMMIT}"
 SH
 
 
-FROM nvidia/cuda:${CUDA_RUNTIME_TAG} AS runtime
+FROM ${CUDA_RUNTIME_IMAGE} AS runtime
 
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
@@ -73,13 +71,13 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update
 
     apt-get install -y --no-install-recommends \
-        ca-certificates \
-        ffmpeg \
-        libgl1 \
-        libglib2.0-0 \
-        libsm6 \
-        libxext6 \
-        libxrender1
+        ca-certificates=20240203 \
+        ffmpeg=7:6.1.1-3ubuntu5 \
+        libgl1=1.7.0-1build1 \
+        libglib2.0-0t64=2.80.0-6ubuntu3.8 \
+        libsm6=2:1.2.3-1build3 \
+        libxext6=2:1.3.4-1build2 \
+        libxrender1=1:0.9.10-1.1build1
 SH
 
 COPY --from=builder /usr/local/bin/uv /usr/local/bin/uv
@@ -97,7 +95,8 @@ RUN <<'SH'
         /data/models/checkpoints \
         /data/models/controlnet \
         /data/models/loras \
-        /data/custom_nodes
+        /data/custom_nodes \
+        /data/user
     chown -R comfy:comfy /data /opt/ComfyUI
 SH
 
@@ -107,4 +106,4 @@ USER comfy
 
 EXPOSE 8188
 
-ENTRYPOINT ["python", "main.py", "--listen", "0.0.0.0", "--base-directory", "/data"]
+ENTRYPOINT ["python", "main.py", "--listen", "0.0.0.0", "--base-directory", "/data", "--database-url", "sqlite:////data/user/comfyui.db"]

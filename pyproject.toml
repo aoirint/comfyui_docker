@@ -3,10 +3,10 @@ name = "comfyui"
 version = "0.0.0"
 requires-python = "==3.12.*"
 dependencies = [
-  # https://github.com/Comfy-Org/ComfyUI/blob/ebf6b52e322664af91fcdc8b8848d31d5fb98f66/requirements.txt
-  "comfyui-frontend-package==1.41.21",
-  "comfyui-workflow-templates==0.9.26",
-  "comfyui-embedded-docs==0.4.3",
+  # https://github.com/Comfy-Org/ComfyUI/blob/52976f3ea33cc2312c7b5a32e1c7510b203eefb6/requirements.txt
+  "comfyui-frontend-package==1.43.18",
+  "comfyui-workflow-templates==0.9.73",
+  "comfyui-embedded-docs==0.4.4",
   "torch",
   "torchsde",
   "torchvision",
@@ -25,11 +25,11 @@ dependencies = [
   "tqdm",
   "psutil",
   "alembic",
-  "SQLAlchemy",
+  "SQLAlchemy>=2.0.0",
   "filelock",
   "av>=14.2.0",
   "comfy-kitchen>=0.2.8",
-  "comfy-aimdo>=0.2.12",
+  "comfy-aimdo==0.3.0",
   "requests",
   "simpleeval>=1.0.0",
   "blake3",
