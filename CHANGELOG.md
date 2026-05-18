@@ -9,7 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add repository agent guidance and local Agent Skills for changelog, quality, security, GitHub Actions, git worktree, and review workflows.
+
 ### Changed
+
+- Configure uv dependency resolution with `exclude-newer`.
+- Update the Docker build to use uv 0.11.13.
+- Update Python dependencies.
+- Rework the release pipeline to derive GitHub Releases and Docker image tags from a new `VERSION` file and existing Git tags, with the release procedure documented in the README.
 
 ### Deprecated
 
