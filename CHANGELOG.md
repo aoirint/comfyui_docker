@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.2.0]
+
 ### Added
 
 - Add a reusable ComfyUI update and smoke-test procedure.
@@ -22,19 +24,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin Docker base images by digest.
 - Rework the release pipeline to derive GitHub Releases and Docker image tags from a new `VERSION` file and existing Git tags, with the release procedure documented in the README.
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
-
 ## [v0.1.0]
 
 ### Added
 
 - Run ComfyUI v0.18.1 as a Docker container.
 
-[Unreleased]: https://github.com/aoirint/comfyui_docker/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/aoirint/comfyui_docker/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/aoirint/comfyui_docker/releases/tag/v0.2.0
 [v0.1.0]: https://github.com/aoirint/comfyui_docker/releases/tag/v0.1.0
