@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add a reusable ComfyUI update and smoke-test procedure.
 - Add repository agent guidance and local Agent Skills for changelog, quality, security, GitHub Actions, git worktree, and review workflows.
 
 ### Changed

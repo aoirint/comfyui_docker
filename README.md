@@ -43,6 +43,10 @@ sudo docker run --gpus all --rm --init -it -v "./data:/data" -p "127.0.0.1:8188:
 - Put custom nodes in `./data/custom_nodes`
 - Generated images are written to `./data/output`
 
+## Maintenance
+
+- [Updating ComfyUI](docs/update-comfyui.md)
+
 ## Release procedure
 
 Releases are driven by the root `VERSION` file and the Git tags on GitHub.
