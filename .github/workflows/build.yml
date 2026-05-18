@@ -4,21 +4,94 @@ on:
   push:
     branches:
       - main
-  release:
-    types:
-      - created
 
-permissions:
-  contents: read
-  packages: write
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 env:
   IMAGE_NAME: aoirint/comfyui
   GHCR_IMAGE_NAME: ghcr.io/aoirint/comfyui
 
 jobs:
-  build-docker:
+  version:
+    runs-on: ubuntu-slim
+
+    permissions:
+      contents: read
+
+    outputs:
+      release_mode: ${{ steps.version.outputs.release_mode }}
+      tag: ${{ steps.version.outputs.tag }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Read release version
+        id: version
+        run: |-
+          version="$(tr -d '[:space:]' < VERSION)"
+
+          if [[ ! "${version}" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "VERSION must be stable SemVer like 0.1.0 or prerelease SemVer like 0.1.0-rc.1" >&2
+            exit 1
+          fi
+
+          tag="v${version}"
+          tag_exists=false
+
+          if git ls-remote --exit-code --tags origin "refs/tags/${tag}" > /dev/null 2>&1; then
+            tag_exists=true
+          fi
+
+          if [[ "${tag_exists}" == "true" ]]; then
+            release_mode=edge
+          elif [[ "${version}" == *-* ]]; then
+            release_mode=prerelease
+          else
+            release_mode=latest
+          fi
+
+          echo "tag_exists=${tag_exists}" >> "$GITHUB_OUTPUT"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+          echo "release_mode=${release_mode}" >> "$GITHUB_OUTPUT"
+
+  release:
+    needs:
+      - version
+    if: ${{ needs.version.outputs.release_mode != 'edge' }}
+
+    runs-on: ubuntu-slim
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Publish release
+        # Create immutable releases so an already-published version cannot be
+        # silently replaced by a later workflow run for the same tag.
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
+        with:
+          tag: ${{ needs.version.outputs.tag }}
+          commit: ${{ github.sha }}
+          immutableCreate: true
+          prerelease: ${{ needs.version.outputs.release_mode == 'prerelease' }}
+          makeLatest: ${{ needs.version.outputs.release_mode == 'latest' }}
+          generateReleaseNotes: true
+
+  build:
+    needs:
+      - version
+      - release
+    if: ${{ always() && needs.version.result == 'success' && (needs.release.result == 'success' || needs.release.result == 'skipped') }}
+
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Free disk space
@@ -70,20 +143,26 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            type=raw,value=edge,enable=${{ github.event_name == 'push' }}
-            type=raw,value=${{ github.event.release.tag_name }},enable=${{ github.event_name == 'release' }}
-            type=raw,value=latest,enable=${{ github.event_name == 'release' && !github.event.release.prerelease }}
+            type=raw,value=edge,enable=${{ needs.version.outputs.release_mode != 'latest' }}
+            type=raw,value=${{ needs.version.outputs.tag }},enable=${{ needs.version.outputs.release_mode == 'latest' }}
+            type=raw,value=latest,enable=${{ needs.version.outputs.release_mode == 'latest' }}
 
       - name: Derive build cache refs
         id: cache
         run: |-
-          if [[ "${{ github.event_name }}" == "release" && "${{ github.event.release.prerelease }}" == "false" ]]; then
-            echo "cache_from=type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:edge-buildcache" >> "$GITHUB_OUTPUT"
-            echo "cache_from=type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:buildcache" >> "$GITHUB_OUTPUT"
-            echo "cache_to=type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:buildcache,mode=max" >> "$GITHUB_OUTPUT"
+          if [[ "${{ needs.version.outputs.release_mode }}" == "latest" ]]; then
+            {
+              echo "cache_from<<EOF"
+              echo "type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:edge-buildcache"
+              echo "type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:buildcache"
+              echo "EOF"
+              echo "cache_to=type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:buildcache,mode=max"
+            } >> "$GITHUB_OUTPUT"
           else
-            echo "cache_from=type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:edge-buildcache" >> "$GITHUB_OUTPUT"
-            echo "cache_to=type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:edge-buildcache,mode=max" >> "$GITHUB_OUTPUT"
+            {
+              echo "cache_from=type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:edge-buildcache"
+              echo "cache_to=type=registry,ref=${{ env.GHCR_IMAGE_NAME }}:edge-buildcache,mode=max"
+            } >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build and Deploy Docker image
