@@ -43,6 +43,18 @@ sudo docker run --gpus all --rm --init -it -v "./data:/data" -p "127.0.0.1:8188:
 - Put custom nodes in `./data/custom_nodes`
 - Generated images are written to `./data/output`
 
+## License
+
+This repository's Dockerfile, documentation, and project-specific files are
+licensed under the MIT License. See [LICENSE](LICENSE).
+
+The published Docker image bundles
+[Comfy-Org/ComfyUI](https://github.com/Comfy-Org/ComfyUI) at the commit
+specified by `COMFYUI_COMMIT` in the Dockerfile. ComfyUI is licensed under the
+GNU General Public License v3.0. See
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the upstream license
+information for details.
+
 ## Maintenance
 
 - [Updating ComfyUI](docs/update-comfyui.md)
