@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ARG CUDA_RUNTIME_TAG=13.2.0-cudnn-runtime-ubuntu24.04
-ARG UV_VERSION=0.11.0
+ARG UV_VERSION=0.11.13
 ARG PYTHON_VERSION=3.12.13
 ARG COMFYUI_REPO=https://github.com/Comfy-Org/ComfyUI.git
 ARG COMFYUI_COMMIT=ebf6b52e322664af91fcdc8b8848d31d5fb98f66
