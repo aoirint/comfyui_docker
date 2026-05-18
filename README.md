@@ -47,7 +47,7 @@ sudo docker run --gpus all --rm --init -it -v "./data:/data" -p "127.0.0.1:8188:
 
 - [Updating ComfyUI](docs/update-comfyui.md)
 
-## Release procedure
+### Release procedure
 
 Releases are driven by the root `VERSION` file and the Git tags on GitHub.
 
@@ -60,3 +60,15 @@ Releases are driven by the root `VERSION` file and the Git tags on GitHub.
    - If the tag does not exist and `VERSION` is a prerelease, it creates a prerelease GitHub Release and publishes the Docker image tagged `edge`.
    - If `VERSION` is `0.0.0`, it is treated as an edge build and only the `edge` Docker image is updated.
    - If the tag already exists, the push is treated as an edge build and only the `edge` Docker image is updated.
+
+## License
+
+This repository's Dockerfile, documentation, and project-specific files are
+licensed under the MIT License. See [LICENSE](LICENSE).
+
+The published Docker image bundles
+[Comfy-Org/ComfyUI](https://github.com/Comfy-Org/ComfyUI) at the commit
+specified by `COMFYUI_COMMIT` in the Dockerfile. ComfyUI is licensed under the
+GNU General Public License v3.0. See
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the upstream license
+information for details.
