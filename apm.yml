@@ -1,0 +1,26 @@
+name: comfyui-docker-agent-skills
+version: 0.0.0
+description: APM-managed Agent Skills for ComfyUI Docker
+author: aoirint
+# Which agent platforms to deploy to.
+# Resolution order: --target flag > this field > auto-detect from filesystem.
+# Accepted values: agent-skills, antigravity, claude, codex, copilot, cursor, gemini, kiro, opencode, windsurf
+targets:
+  - agent-skills
+dependencies:
+  apm:
+    - aoirint/skills/.apm/skills/changelog-workflow#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/code-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/commit-message-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/git-worktree-workflow#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/github-actions-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/gitignore-workflow#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/issue-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/pull-request-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/prose-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/release-note-workflow#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/security-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - aoirint/skills/.apm/skills/skill-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+  mcp: []
+includes: auto
+scripts: {}
