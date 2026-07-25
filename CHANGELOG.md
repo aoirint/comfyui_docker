@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update ComfyUI to v0.28.0.
 - Refresh the locked Python dependencies to match ComfyUI v0.28.0 requirements.
+- Update the uv base image to v0.11.29.
+- Refresh GitHub Actions pins with a seven-day release cooldown.
 
 ## [v0.2.0]
 
