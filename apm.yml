@@ -9,18 +9,21 @@ targets:
   - agent-skills
 dependencies:
   apm:
-    - aoirint/skills/.apm/skills/changelog-workflow#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/code-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/commit-message-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/git-worktree-workflow#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/github-actions-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/gitignore-workflow#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/issue-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/pull-request-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/prose-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/release-note-workflow#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/security-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
-    - aoirint/skills/.apm/skills/skill-quality-check#8a2bb13afb40cc31dbcd3280b74004834d428b4a
+    - git: aoirint/skills
+      ref: 8a2bb13afb40cc31dbcd3280b74004834d428b4a
+      skills:
+        - changelog-workflow
+        - code-quality-check
+        - commit-message-quality-check
+        - git-worktree-workflow
+        - github-actions-quality-check
+        - gitignore-workflow
+        - issue-quality-check
+        - prose-quality-check
+        - pull-request-quality-check
+        - release-note-workflow
+        - security-check
+        - skill-quality-check
   mcp: []
 includes: auto
 scripts: {}
