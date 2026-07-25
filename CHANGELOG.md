@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update ComfyUI to v0.28.0.
+- Refresh the locked Python dependencies to match ComfyUI v0.28.0 requirements.
+
 ## [v0.2.0]
 
 ### Added
