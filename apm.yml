@@ -6,7 +6,7 @@ author: aoirint
 # Resolution order: --target flag > this field > auto-detect from filesystem.
 # Accepted values: agent-skills, antigravity, claude, codex, copilot, cursor, gemini, kiro, opencode, windsurf
 targets:
-  - agent-skills
+  - codex
 dependencies:
   apm:
     - git: aoirint/skills
