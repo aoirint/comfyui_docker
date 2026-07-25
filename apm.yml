@@ -1,0 +1,29 @@
+name: comfyui-docker-agent-skills
+version: 0.0.0
+description: APM-managed Agent Skills for ComfyUI Docker
+author: aoirint
+# Which agent platforms to deploy to.
+# Resolution order: --target flag > this field > auto-detect from filesystem.
+# Accepted values: agent-skills, antigravity, claude, codex, copilot, cursor, gemini, kiro, opencode, windsurf
+targets:
+  - agent-skills
+dependencies:
+  apm:
+    - git: aoirint/skills
+      ref: 8a2bb13afb40cc31dbcd3280b74004834d428b4a
+      skills:
+        - changelog-workflow
+        - code-quality-check
+        - commit-message-quality-check
+        - git-worktree-workflow
+        - github-actions-quality-check
+        - gitignore-workflow
+        - issue-quality-check
+        - prose-quality-check
+        - pull-request-quality-check
+        - release-note-workflow
+        - security-check
+        - skill-quality-check
+  mcp: []
+includes: auto
+scripts: {}
