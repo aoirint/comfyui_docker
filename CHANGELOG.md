@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.3.0] - 2026-07-25 UTC
+
 ### Changed
 
 - Update ComfyUI to v0.28.0.
@@ -37,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Run ComfyUI v0.18.1 as a Docker container.
 
-[Unreleased]: https://github.com/aoirint/comfyui_docker/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/aoirint/comfyui_docker/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/aoirint/comfyui_docker/releases/tag/v0.3.0
 [v0.2.0]: https://github.com/aoirint/comfyui_docker/releases/tag/v0.2.0
 [v0.1.0]: https://github.com/aoirint/comfyui_docker/releases/tag/v0.1.0
