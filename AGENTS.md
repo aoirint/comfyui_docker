@@ -12,10 +12,13 @@ Repository-local Agent Skills are deployed to `.agents/skills/` by
 directly.
 
 - `apm.yml` pins the selected public
-  [aoirint/skills](https://github.com/aoirint/skills) packages, and
-  `apm.lock.yaml` records their resolved commits and content hashes.
+  [aoirint/skills](https://github.com/aoirint/skills) package, and
+  `apm.lock.yaml` records its resolved commit and content hashes.
 - Keep this unpublished APM project at `version: 0.0.0` until its distribution
   and versioning design is explicitly decided.
+- Use APM CLI 0.26.0 for lock operations. Its normal seven-day cooldown was
+  explicitly waived because it fixes virtual-package `config-consistency`
+  audit failures. The waiver covers only the CLI release time gate.
 - To restore the committed Skill set, run `apm install --frozen` from the
   repository root, then run `apm audit --ci`.
 - Make shared Skill changes in
@@ -28,8 +31,7 @@ directly.
 
 ### Approved cooldown exception
 
-A maintainer explicitly approved adopting the current direct
-`aoirint/skills` commit
-`8a2bb13afb40cc31dbcd3280b74004834d428b4a` before its normal seven-day
-cooldown. This exception applies only to that direct dependency selection; it
+A maintainer may explicitly waive the normal seven-day wait for the latest
+`aoirint/skills` main commit. Record the waiver and exact full commit SHA in
+the pull request. That waiver applies only to the `aoirint/skills` commit; it
 does not waive review or cooldown requirements for any of its dependencies.
