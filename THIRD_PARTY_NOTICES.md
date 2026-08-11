@@ -17,6 +17,7 @@ that are present in that checkout.
 - Source: [aoirint/skills](https://github.com/aoirint/skills), virtual paths
   under `.apm/skills/`
 - Pinned commit:
-  [`8a2bb13afb40cc31dbcd3280b74004834d428b4a`](https://github.com/aoirint/skills/tree/8a2bb13afb40cc31dbcd3280b74004834d428b4a)
-- Deployed paths: `.agents/skills/{changelog-workflow,code-quality-check,commit-message-quality-check,git-worktree-workflow,github-actions-quality-check,gitignore-workflow,issue-quality-check,pull-request-quality-check,prose-quality-check,release-note-workflow,security-check,skill-quality-check}/`
-- License: [MIT](https://github.com/aoirint/skills/blob/8a2bb13afb40cc31dbcd3280b74004834d428b4a/LICENSE)
+  [`329572438060c1b0c34882b2c3a8e388ae30cd1a`](https://github.com/aoirint/skills/tree/329572438060c1b0c34882b2c3a8e388ae30cd1a)
+- Deployed paths: `.agents/skills/{apm-usage,changelog-workflow,code-quality-check,commit-message-quality-check,docker-quality-check,git-worktree-workflow,github-workflow,gitignore-workflow,prose-quality-check,python-quality-check,release-note-workflow,security-check}/`
+- License: [MIT](https://github.com/aoirint/skills/blob/329572438060c1b0c34882b2c3a8e388ae30cd1a/LICENSE)
+- Copyright: Copyright (c) 2026 aoirint
