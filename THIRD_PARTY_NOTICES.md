@@ -4,7 +4,7 @@ This project builds Docker images that include third-party software.
 
 ## Comfy-Org/ComfyUI
 
-- Source: https://github.com/Comfy-Org/ComfyUI
+- Source: <https://github.com/Comfy-Org/ComfyUI>
 - Bundled location in image: `/opt/ComfyUI`
 - Version: see `COMFYUI_COMMIT` in `Dockerfile`
 - License: GNU General Public License v3.0

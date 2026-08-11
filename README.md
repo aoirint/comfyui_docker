@@ -8,8 +8,8 @@
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/) 29 or later
 - [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 - NVIDIA GeForce RTX 4000 series, 5000 series
-  - 1000 series does not work due to CUDA compatibility.
-  - 2000 series and 3000 series might work, but untested.
+    - 1000 series does not work due to CUDA compatibility.
+    - 2000 series and 3000 series might work, but untested.
 
 ## Usage
 
@@ -52,14 +52,19 @@ sudo docker run --gpus all --rm --init -it -v "./data:/data" -p "127.0.0.1:8188:
 Releases are driven by the root `VERSION` file and the Git tags on GitHub.
 
 1. Update `VERSION` to the version to publish.
-   - Stable releases use SemVer without a prerelease suffix, such as `0.2.0`.
-   - Prereleases use SemVer with a prerelease suffix, such as `0.2.0-rc.1`.
+    - Stable releases use SemVer without a prerelease suffix, such as `0.2.0`.
+    - Prereleases use SemVer with a prerelease suffix, such as `0.2.0-rc.1`.
 2. Commit the `VERSION` change and merge it to `main`.
 3. The build workflow checks whether `v<VERSION>` already exists on GitHub.
-   - If the tag does not exist and `VERSION` is stable, it creates a latest GitHub Release and publishes Docker images tagged `v<VERSION>` and `latest`.
-   - If the tag does not exist and `VERSION` is a prerelease, it creates a prerelease GitHub Release and publishes the Docker image tagged `edge`.
-   - If `VERSION` is `0.0.0`, it is treated as an edge build and only the `edge` Docker image is updated.
-   - If the tag already exists, the push is treated as an edge build and only the `edge` Docker image is updated.
+    - If the tag does not exist and `VERSION` is stable, it creates a latest
+      GitHub Release and publishes Docker images tagged `v<VERSION>` and
+      `latest`.
+    - If the tag does not exist and `VERSION` is a prerelease, it creates a
+      prerelease GitHub Release and publishes the Docker image tagged `edge`.
+    - If `VERSION` is `0.0.0`, it is treated as an edge build and only the
+      `edge` Docker image is updated.
+    - If the tag already exists, the push is treated as an edge build and only
+      the `edge` Docker image is updated.
 
 ## License
 
