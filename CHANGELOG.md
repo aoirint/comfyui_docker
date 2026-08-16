@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update ComfyUI to v0.31.0 and refresh its locked runtime dependencies.
+- Update the uv base image to v0.12.3.
+
 ## [v0.3.0] - 2026-07-25 UTC
 
 ### Changed

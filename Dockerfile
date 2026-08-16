@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 
 ARG CUDA_RUNTIME_IMAGE=nvidia/cuda:13.2.0-cudnn-runtime-ubuntu24.04@sha256:7a31e9bfb2086e4b1ac08aa8e4718d7860730ecc6a9882d2f1e5ed6239f8ef5b
-ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.11.29@sha256:eb2843a1e56fd9e30c7276ce1a52cba86e64c7b385f5e3279a0e08e02dd058fc
+ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.12.3@sha256:2d890623d310b57771ce840f0da5eed5fc6d657da05ffaa45d82797b53fa3abc
 ARG PYTHON_VERSION=3.12.13
 ARG COMFYUI_REPO=https://github.com/Comfy-Org/ComfyUI.git
-ARG COMFYUI_COMMIT=700821e1364eaab0e8f21c538a2131719fec57bf
+ARG COMFYUI_COMMIT=43cb4fffc89bba20ab7bd61467a36d0339338dab
 
 FROM ${UV_IMAGE} AS uv
 
