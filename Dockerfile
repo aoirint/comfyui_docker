@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 
-ARG CUDA_RUNTIME_IMAGE=nvidia/cuda:13.2.0-cudnn-runtime-ubuntu24.04@sha256:7a31e9bfb2086e4b1ac08aa8e4718d7860730ecc6a9882d2f1e5ed6239f8ef5b
+ARG CUDA_RUNTIME_IMAGE=nvidia/cuda:13.3.1-cudnn-runtime-ubuntu24.04@sha256:2c9730db1d78ce3a7503a2f4ff2d64add3e7d1a47d57da504376192dda335242
 ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.12.3@sha256:2d890623d310b57771ce840f0da5eed5fc6d657da05ffaa45d82797b53fa3abc
 ARG PYTHON_VERSION=3.12.13
 ARG COMFYUI_REPO=https://github.com/Comfy-Org/ComfyUI.git
-ARG COMFYUI_COMMIT=43cb4fffc89bba20ab7bd61467a36d0339338dab
+ARG COMFYUI_COMMIT=c2bcbecd82ec5ae66594340b395c24ef0217b238
 
 FROM ${UV_IMAGE} AS uv
 
@@ -29,7 +29,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update
 
     apt-get install -y --no-install-recommends \
-        ca-certificates=20240203 \
+        ca-certificates=20260601~24.04.1 \
         ffmpeg=7:6.1.1-3ubuntu5 \
         git=1:2.43.0-1ubuntu7.3 \
         libgl1=1.7.0-1build1 \
@@ -71,7 +71,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update
 
     apt-get install -y --no-install-recommends \
-        ca-certificates=20240203 \
+        ca-certificates=20260601~24.04.1 \
         ffmpeg=7:6.1.1-3ubuntu5 \
         libgl1=1.7.0-1build1 \
         libglib2.0-0t64=2.80.0-6ubuntu3.8 \
