@@ -74,6 +74,7 @@ licensed under the MIT License. See [LICENSE](LICENSE).
 The published Docker image bundles
 [Comfy-Org/ComfyUI](https://github.com/Comfy-Org/ComfyUI) at the commit
 specified by `COMFYUI_COMMIT` in the Dockerfile. ComfyUI is licensed under the
-GNU General Public License v3.0. See
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the upstream license
-information for details.
+GNU General Public License v3.0. It uses the NVIDIA CUDA runtime image specified
+by `CUDA_RUNTIME_IMAGE`, which is distributed under the
+[NVIDIA Deep Learning Container License](https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license).
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for details.
