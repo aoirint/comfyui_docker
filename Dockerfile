@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 
 ARG CUDA_RUNTIME_IMAGE=nvidia/cuda:13.3.1-cudnn-runtime-ubuntu24.04@sha256:2c9730db1d78ce3a7503a2f4ff2d64add3e7d1a47d57da504376192dda335242
-ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.12.3@sha256:2d890623d310b57771ce840f0da5eed5fc6d657da05ffaa45d82797b53fa3abc
-ARG PYTHON_VERSION=3.12.13
+ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.13.1@sha256:4a1f3666816dafadd20ceb71eac9a7d56d7ef30279f7d64048519ab901ada336
+ARG PYTHON_VERSION=3.12.15
 ARG COMFYUI_REPO=https://github.com/Comfy-Org/ComfyUI.git
-ARG COMFYUI_COMMIT=c2bcbecd82ec5ae66594340b395c24ef0217b238
+ARG COMFYUI_COMMIT=98cc0bf84b7cb1383654c5b402e7612d875d6d22
 
 FROM ${UV_IMAGE} AS uv
 
@@ -29,11 +29,11 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update
 
     apt-get install -y --no-install-recommends \
-        ca-certificates=20260601~24.04.1 \
+        ca-certificates=20260816ubuntu0.24.04.1 \
         ffmpeg=7:6.1.1-3ubuntu5 \
-        git=1:2.43.0-1ubuntu7.3 \
+        git=1:2.43.0-1ubuntu7.4 \
         libgl1=1.7.0-1build1 \
-        libglib2.0-0t64=2.80.0-6ubuntu3.8 \
+        libglib2.0-0t64=2.80.0-6ubuntu3.10 \
         libsm6=2:1.2.3-1build3 \
         libxext6=2:1.3.4-1build2 \
         libxrender1=1:0.9.10-1.1build1
@@ -71,10 +71,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update
 
     apt-get install -y --no-install-recommends \
-        ca-certificates=20260601~24.04.1 \
+        ca-certificates=20260816ubuntu0.24.04.1 \
         ffmpeg=7:6.1.1-3ubuntu5 \
         libgl1=1.7.0-1build1 \
-        libglib2.0-0t64=2.80.0-6ubuntu3.8 \
+        libglib2.0-0t64=2.80.0-6ubuntu3.10 \
         libsm6=2:1.2.3-1build3 \
         libxext6=2:1.3.4-1build2 \
         libxrender1=1:0.9.10-1.1build1

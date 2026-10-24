@@ -202,7 +202,7 @@ Check that core Python packages import:
 
 ```shell
 docker run --rm --entrypoint python comfyui:cooldown-test -c \
-  'import torch, torchvision, torchaudio; print(torch.__version__); print(torchvision.__version__); print(torchaudio.__version__)'
+  'import torch, torchvision; print(torch.__version__); print(torchvision.__version__)'
 ```
 
 Start ComfyUI in CPU mode for an environment-independent HTTP smoke test:
