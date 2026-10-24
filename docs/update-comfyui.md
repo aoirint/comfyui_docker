@@ -132,6 +132,8 @@ continue to pass:
 ```
 
 Also ensure `/data/user` is created and owned by the runtime user.
+ComfyUI v0.41.0 opens this database only when the assets system is enabled
+with `--enable-assets`; ordinary startup leaves it unused.
 
 ## 4. Refresh `uv.lock`
 
@@ -212,7 +214,7 @@ docker run --rm -d \
   --name comfyui-cooldown-test \
   -p 127.0.0.1:18188:8188 \
   comfyui:cooldown-test \
-  --cpu
+  --cpu --enable-assets
 ```
 
 Wait for the frontend route and API to respond:
