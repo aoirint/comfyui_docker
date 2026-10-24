@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update ComfyUI from v0.32.0 to v0.41.0 and align the frontend, workflow
+  templates, embedded documentation, and runtime dependencies with upstream.
+- Update Python from 3.12.13 to 3.12.15 and refresh the Python lockfile,
+  including PyTorch 2.14.1 and torchvision 0.29.1 on CUDA 13.0.
+- Update uv to 0.13.1, Ubuntu CA certificates, Git, GLib, and the Docker
+  build/setup GitHub Actions.
+
+### Removed
+
+- Remove torchaudio, which ComfyUI v0.41.0 no longer imports or requires.
+
+### Security
+
+- Update certifi, filelock, and setuptools to releases containing the fixes
+  identified by the dependency advisory audit.
+- Remove the compromised emSign CA from the system and Python CA bundles.
+
+### Notes
+
+- The maintainer authorized cooldown exceptions for trusted security
+  advisories. Apply narrow exceptions for certifi 2026.10.19
+  ([GHSA-6q48-6c7w-9gw2](https://github.com/certifi/python-certifi/security/advisories/GHSA-6q48-6c7w-9gw2)),
+  filelock 4.2.1
+  ([GHSA-2g95-wg33-c5x2](https://github.com/tox-dev/filelock/security/advisories/GHSA-2g95-wg33-c5x2)),
+  setuptools 84.1.0
+  ([GHSA-xmj3-9gf7-h52w](https://github.com/pypa/setuptools/security/advisories/GHSA-xmj3-9gf7-h52w)),
+  and Ubuntu ca-certificates 20260816ubuntu0.24.04.1
+  ([USN-8944-1](https://ubuntu.com/security/notices/USN-8944-1)).
+  Review the temporary Python exceptions after 2026-10-27 UTC.
+
 ## [v0.4.0] - 2026-08-20 UTC
 
 ### Changed
