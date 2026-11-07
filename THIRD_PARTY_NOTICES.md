@@ -29,9 +29,9 @@ copyright files under `/usr/share/doc`.
 - Source: [aoirint/skills](https://github.com/aoirint/skills), virtual paths
   under `.apm/skills/`
 - Pinned commit:
-  [`d7d2b22e82943ba09cb1a0058ce5de116e8f7f5d`](https://github.com/aoirint/skills/tree/d7d2b22e82943ba09cb1a0058ce5de116e8f7f5d)
+  [`1bbdf247da61492e8c1531f341aae400a04b9503`](https://github.com/aoirint/skills/tree/1bbdf247da61492e8c1531f341aae400a04b9503)
 - Deployed paths: `.agents/skills/{apm-workflow,changelog-workflow,code-quality-check,commit-message-quality-check,docker-quality-check,git-worktree-workflow,github-workflow,gitignore-workflow,prose-quality-check,python-quality-check,release-note-workflow,security-check}/`
-- License: [MIT](https://github.com/aoirint/skills/blob/d7d2b22e82943ba09cb1a0058ce5de116e8f7f5d/LICENSE)
+- License: [MIT](https://github.com/aoirint/skills/blob/1bbdf247da61492e8c1531f341aae400a04b9503/LICENSE)
 - Copyright: Copyright (c) 2026 aoirint
 
 - Cooldown: the maintainer requested immediate adoption of this exact direct
