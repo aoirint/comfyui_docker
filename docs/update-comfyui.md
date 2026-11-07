@@ -33,7 +33,7 @@ The validation commands below assume the image name `comfyui:cooldown-test`.
 Use another temporary tag if that tag is already meaningful in your local
 environment.
 
-## 1. Select The Target Version
+## 1. Select the version
 
 List upstream version tags:
 
@@ -49,14 +49,13 @@ git -C /tmp/comfyui-upstream fetch --tags origin
 git -C /tmp/comfyui-upstream show --no-patch --format='%H %ci %s' vX.Y.Z
 ```
 
-Only adopt a ComfyUI release after the repository cooldown window has passed.
-The current baseline is a minimum of 7 days after the upstream release timestamp
-or tag commit timestamp.
+Wait at least seven days after the upstream release timestamp or tag commit
+timestamp before selecting a ComfyUI release.
 
 Record the selected commit SHA. Prefer the tag commit for released versions
 instead of a branch name.
 
-## 2. Read Upstream Requirements
+## 2. Read upstream requirements
 
 Print the upstream requirements for the selected version:
 
@@ -83,7 +82,7 @@ When translating requirements:
 - Preserve local package source settings such as the PyTorch CUDA index unless
   the update intentionally changes the CUDA or PyTorch packaging strategy.
 
-## 3. Update The Dockerfile
+## 3. Update the Dockerfile
 
 Set `COMFYUI_COMMIT` to the selected upstream commit:
 
@@ -163,7 +162,7 @@ Review the resolver output and `uv.lock` diff for unexpected package upgrades.
 If a package appears newer than the cooldown policy should allow, stop and
 investigate before building the image.
 
-## 5. Run Static Checks
+## 5. Run static checks
 
 Run Dockerfile linting:
 
@@ -183,7 +182,7 @@ If `hadolint` reports `DL3008`, pin the affected apt package versions.
 If it reports `DL3003` or `SC2164` around a `cd`, prefer `git -C` or `WORKDIR`
 instead of changing directories inside a shell block.
 
-## 6. Build The Image
+## 6. Build the image
 
 Build the image:
 
@@ -198,7 +197,7 @@ If the build fails while pulling `ghcr.io/astral-sh/uv`, check local Docker
 authentication state first. The image may still be publicly readable even when
 an expired local credential causes Docker to fail.
 
-## 7. Run Smoke Tests
+## 7. Run smoke tests
 
 Check that core Python packages import:
 
@@ -248,7 +247,7 @@ Stop the test container after validation:
 docker stop comfyui-cooldown-test
 ```
 
-## 8. Review And Record The Change
+## 8. Record the update
 
 Review the diff:
 
