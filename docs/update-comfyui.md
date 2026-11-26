@@ -131,8 +131,7 @@ continue to pass:
 ```
 
 Also ensure `/data/user` is created and owned by the runtime user.
-ComfyUI v0.41.0 opens this database only when the assets system is enabled
-with `--enable-assets`; ordinary startup leaves it unused.
+Enable the assets system with `--enable-assets` to exercise this database.
 
 ## 4. Refresh `uv.lock`
 
@@ -206,7 +205,9 @@ docker run --rm --entrypoint python comfyui:cooldown-test -c \
   'import torch, torchvision; print(torch.__version__); print(torchvision.__version__)'
 ```
 
-Start ComfyUI in CPU mode for an environment-independent HTTP smoke test:
+Start ComfyUI in CPU mode with the assets system enabled. Do not mount an
+existing data directory: the test uses a fresh database inside the disposable
+container.
 
 ```shell
 docker run --rm -d \
@@ -220,14 +221,15 @@ Wait for the frontend route and API to respond:
 
 ```shell
 for i in $(seq 1 60); do
-  if curl -fsS -o /tmp/comfyui-index.html http://127.0.0.1:18188/; then
+  if curl -fsS --max-time 5 -o /dev/null http://127.0.0.1:18188/; then
     echo ready
     break
   fi
   sleep 2
 done
 
-curl -fsS http://127.0.0.1:18188/system_stats
+curl -fsS --max-time 5 http://127.0.0.1:18188/system_stats
+curl -fsS --max-time 5 "http://127.0.0.1:18188/api/assets?limit=1"
 docker logs --tail 140 comfyui-cooldown-test
 ```
 
@@ -238,8 +240,10 @@ Confirm:
 - `required_frontend_version` matches the upstream frontend package version.
 - `installed_templates_version` matches the upstream workflow templates version.
 - The log reaches `Starting server`.
-- Database migrations complete or the existing database opens successfully.
-- There is no `Failed to initialize database` error.
+- The assets request returns HTTP 200 and a JSON asset list. The frontend can
+  start even when the asset database is unavailable, so check this response
+  separately.
+- The log shows no database initialization or migration errors.
 
 Stop the test container after validation:
 
@@ -270,6 +274,7 @@ Commit the completed update after the checks pass:
 
 ```shell
 git add CHANGELOG.md Dockerfile pyproject.toml uv.lock
+# If this procedure changed, also stage docs/update-comfyui.md.
 git commit -m "build: update ComfyUI to vX.Y.Z"
 ```
 

@@ -3,10 +3,10 @@ name = "comfyui"
 version = "0.0.0"
 requires-python = "==3.12.*"
 dependencies = [
-  # https://github.com/Comfy-Org/ComfyUI/blob/98cc0bf84b7cb1383654c5b402e7612d875d6d22/requirements.txt
-  "comfyui-frontend-package==1.55.17",
-  "comfyui-workflow-templates==0.11.84",
-  "comfyui-embedded-docs==0.5.14",
+  # https://github.com/Comfy-Org/ComfyUI/blob/a277b5bf213e8a44fa34817b7770b54f86ef4cea/requirements.txt
+  "comfyui-frontend-package==1.59.6",
+  "comfyui-workflow-templates==0.11.111",
+  "comfyui-embedded-docs==0.5.17",
   "torch",
   "torchsde",
   "torchvision",
@@ -19,7 +19,7 @@ dependencies = [
   "aiohttp>=3.11.8",
   "yarl>=1.18.0",
   "pyyaml",
-  "Pillow",
+  "Pillow>=10.1.0",
   "scipy",
   "tqdm",
   "psutil",
@@ -27,8 +27,8 @@ dependencies = [
   "SQLAlchemy>=2.0.0",
   "filelock",
   "av>=17.0.0",
-  "comfy-kitchen==0.2.37",
-  "comfy-aimdo==0.5.6",
+  "comfy-aimdo==0.6.0",
+  "comfy-kitchen==0.2.41",
   "requests",
   "simpleeval>=1.0.0",
   "blake3",
@@ -43,11 +43,6 @@ dependencies = [
 [tool.uv]
 package = false
 exclude-newer = "P7D"
-# Temporary exceptions for upstream security fixes; remove after 2026-10-27 UTC.
-# https://github.com/certifi/python-certifi/security/advisories/GHSA-6q48-6c7w-9gw2
-# https://github.com/tox-dev/filelock/security/advisories/GHSA-2g95-wg33-c5x2
-# https://github.com/pypa/setuptools/security/advisories/GHSA-xmj3-9gf7-h52w
-exclude-newer-package = { certifi = "2026-10-21T00:00:00Z", filelock = "2026-10-18T00:00:00Z", setuptools = "2026-10-20T00:00:00Z" }
 constraint-dependencies = [
   "certifi>=2026.10.19",
   "filelock>=4.2.1",
