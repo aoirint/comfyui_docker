@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update ComfyUI from v0.41.0 to v0.46.0 and refresh the locked Python
+  dependencies, including the frontend, workflow templates, and embedded docs.
+
+### Security
+
+- Update Ubuntu CA certificates ([USN-9001-1](https://ubuntu.com/security/notices/USN-9001-1)).
+
 ## [v0.5.0] - 2026-10-24 UTC
 
 ### Changed
