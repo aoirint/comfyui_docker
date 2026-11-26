@@ -11,7 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update ComfyUI from v0.41.0 to v0.46.0 and refresh the locked Python
   dependencies, including the frontend, workflow templates, and embedded docs.
-- Update the NVIDIA CUDA runtime image to 13.5.0.
 
 ### Security
 
